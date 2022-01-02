@@ -1,6 +1,7 @@
 import React, { useCallback } from 'react';
 
-import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { useNavigation } from '@react-navigation/native';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { Container, Title, AddBookButton, Header } from './styles';
 
 type RootStackParamList = {
@@ -8,9 +9,12 @@ type RootStackParamList = {
   Home: undefined;
 };
 
-type Props = NativeStackScreenProps<RootStackParamList, 'Home'>;
-
-export function Home({ navigation: { navigate } }: Props) {
+type ProfileScreenNavigationProp = NativeStackNavigationProp<
+  RootStackParamList,
+  'Home'
+>;
+export function Home() {
+  const { navigate } = useNavigation<ProfileScreenNavigationProp>();
   const handleNavigateToNewBook = useCallback(() => {
     navigate('NewBook');
   }, [navigate]);
