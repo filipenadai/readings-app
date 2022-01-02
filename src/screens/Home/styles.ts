@@ -1,6 +1,12 @@
 import styled from 'styled-components/native';
 import { BorderlessButton } from 'react-native-gesture-handler';
-import { RFPercentage } from 'react-native-responsive-fontsize';
+import { RFPercentage, RFValue } from 'react-native-responsive-fontsize';
+import { FlatList } from 'react-native';
+
+interface Book {
+  id: string;
+  name: string;
+}
 
 export const Container = styled.View`
   flex: 1;
@@ -30,4 +36,18 @@ export const Header = styled.View`
   background-color: ${({ theme }) => theme.colors.primary};
   border-bottom-left-radius: 12px;
   border-bottom-right-radius: 12px;
+`;
+
+export const Content = styled.View`
+  flex: 1;
+  width: 100%;
+  padding: 0 ${RFValue(16)}px;
+`;
+
+export const BooksList = styled(FlatList as new () => FlatList<Book>)`
+  margin-top: ${RFValue(16)}px;
+`;
+
+export const SeparatorItemComponent = styled.View`
+  margin-top: ${RFValue(16)}px;
 `;

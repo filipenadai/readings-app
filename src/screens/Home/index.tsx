@@ -2,7 +2,17 @@ import React, { useCallback } from 'react';
 
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import { Container, Title, AddBookButton, Header } from './styles';
+import { FlatList } from 'react-native';
+import { RFValue } from 'react-native-responsive-fontsize';
+import {
+  Container,
+  Title,
+  AddBookButton,
+  Header,
+  Content,
+  SeparatorItemComponent,
+} from './styles';
+import { BookCard } from '../../components/Card';
 
 type RootStackParamList = {
   NewBook: undefined;
@@ -13,7 +23,34 @@ type ProfileScreenNavigationProp = NativeStackNavigationProp<
   RootStackParamList,
   'Home'
 >;
+
 export function Home() {
+  const books = [
+    {
+      id: 'saiusaushia',
+      name: 'Pense e enriqueça',
+    },
+    {
+      id: 'fdsfdsfsd',
+      name: 'Pense e enriqueça',
+    },
+    {
+      id: 'yg43fgds',
+      name: 'Pense e enriqueça',
+    },
+    {
+      id: 'fsdf4ty',
+      name: 'Pense e enriqueça',
+    },
+    {
+      id: 'hedr5',
+      name: 'Pense e enriqueça',
+    },
+    {
+      id: 'fsdfh4',
+      name: 'Pense e enriqueça',
+    },
+  ];
   const { navigate } = useNavigation<ProfileScreenNavigationProp>();
   const handleNavigateToNewBook = useCallback(() => {
     navigate('NewBook');
@@ -30,6 +67,18 @@ export function Home() {
           <Title>Novo Livro</Title>
         </AddBookButton>
       </Header>
+      <Content>
+        <FlatList
+          data={books}
+          ItemSeparatorComponent={SeparatorItemComponent}
+          style={{
+            marginTop: RFValue(16),
+          }}
+          showsVerticalScrollIndicator={false}
+          keyExtractor={item => item.id}
+          renderItem={({ item }) => <BookCard name={item.name} />}
+        />
+      </Content>
     </Container>
   );
 }

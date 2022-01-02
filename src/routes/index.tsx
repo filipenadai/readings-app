@@ -2,12 +2,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { Home } from '../screens/Home';
 import { NewBook } from '../screens/NewBook';
 
-type RootStackParamList = {
-  NewBook: undefined;
-  Home: undefined;
-};
-
-const { Navigator, Screen } = createNativeStackNavigator<RootStackParamList>();
+const { Navigator, Screen } = createNativeStackNavigator();
 
 export function Routes() {
   return (
