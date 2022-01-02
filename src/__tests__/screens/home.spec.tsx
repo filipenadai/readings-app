@@ -37,4 +37,14 @@ describe('Home Screen', () => {
 
     expect(newScreenContainer).toBeTruthy();
   });
+
+  it('should be list a books in home page', async () => {
+    const { findAllByTestId } = render(<Home />, {
+      wrapper: Providers,
+    });
+
+    const bookCard = await findAllByTestId('book-card');
+
+    expect(bookCard);
+  });
 });
