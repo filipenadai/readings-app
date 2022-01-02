@@ -1,11 +1,16 @@
 import React, { useCallback } from 'react';
-import { useNavigation } from '@react-navigation/native';
 
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { Container, Title, AddBookButton, Header } from './styles';
 
-export function Home() {
-  const { navigate } = useNavigation();
+type RootStackParamList = {
+  NewBook: undefined;
+  Home: undefined;
+};
 
+type Props = NativeStackScreenProps<RootStackParamList, 'Home'>;
+
+export function Home({ navigation: { navigate } }: Props) {
   const handleNavigateToNewBook = useCallback(() => {
     navigate('NewBook');
   }, [navigate]);
